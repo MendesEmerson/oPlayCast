@@ -8,13 +8,13 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 kotlinSerialization = "1.9.10"
 kotlinxSerializationJson = "1.6.0"
-kotlinxSerializationXml = "0.5.0"
 lifecycleRuntimeKtx = "2.8.4"
 activityCompose = "1.9.1"
 composeBom = "2024.04.01"
 navigationCompose = "2.7.7"
 retrofit = "2.9.0"
 retrofit2KotlinxSerializationConverter = "0.8.0"
+xmlSerialization = "0.86.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -35,9 +35,9 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinAndroidxCompose" }
 kotlin-serialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlinSerialization" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
-kotlinx-serialization-xml = { module = "org.jetbrains.kotlinx:kotlinx-serialization-xml", version.ref = "kotlinxSerializationXml" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2KotlinxSerializationConverter" }
+xml-serialization = { module = "io.github.pdvrieze.xmlutil:serialization", version.ref = "xmlSerialization" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

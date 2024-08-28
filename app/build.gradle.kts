@@ -79,10 +79,12 @@ dependencies {
     // Navigation
     implementation(libs.androidx.navigation.compose)
 
-    // Kotlinx Serialization (XML)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.kotlinx.serialization.xml)
-
     // Kotlin Serializable
     implementation(libs.kotlin.serialization)
+    implementation(libs.kotlinx.serialization.json)
+
+    //xmlUtil Serializable
+    implementation(libs.xml.serialization)
+
+
 }
