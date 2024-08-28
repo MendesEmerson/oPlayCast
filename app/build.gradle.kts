@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
+
 }
 
 android {
@@ -66,4 +68,21 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Koin
+    implementation(libs.koin.androidx.compose)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
+
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
+
+    // Kotlinx Serialization (XML)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlinx.serialization.xml)
+
+    // Kotlin Serializable
+    implementation(libs.kotlin.serialization)
 }
