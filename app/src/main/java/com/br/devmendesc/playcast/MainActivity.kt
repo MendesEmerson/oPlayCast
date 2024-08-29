@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import com.br.devmendesc.Navigation
 import com.br.devmendesc.playcast.ui.theme.PlayCastTheme
 
 class MainActivity : ComponentActivity() {
@@ -12,7 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PlayCastTheme {
-
+                Navigation()
             }
         }
     }
