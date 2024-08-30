@@ -83,8 +83,14 @@ dependencies {
     implementation(libs.kotlin.serialization)
     implementation(libs.kotlinx.serialization.json)
 
-    //xmlUtil Serializable
+    //XmlUtil Serializable
     implementation(libs.xml.serialization)
 
+    //Pager
+    implementation (libs.accompanist.pager)
+    implementation (libs.accompanist.pager.indicators)
+
+    //Coil
+    implementation(libs.coil.compose)
 
 }
