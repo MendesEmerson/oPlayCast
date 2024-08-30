@@ -8,6 +8,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.br.devmendesc.playcast.ui.theme.GrayHigh
+import com.br.devmendesc.playcast.ui.theme.IceWhite
 
 @Composable
 fun StarsText(
@@ -16,7 +17,7 @@ fun StarsText(
     textAling: TextAlign = TextAlign.Start,
     fontSize: Int = 16,
     fontWeight: FontWeight = FontWeight.Normal,
-    color: Color = GrayHigh
+    color: Color = IceWhite
 ) {
 
     Text(
