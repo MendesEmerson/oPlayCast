@@ -15,20 +15,26 @@ class HomePageViewModel(
     private val latestEpisodesUseCase: LatestEpisodesUseCase,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<HomePageUiState>(HomePageUiState.PodcastInitial)
-    val uiState = _uiState.asStateFlow()
+    private val _podcastUiState = MutableStateFlow<HomePageUiState>(HomePageUiState.PodcastInitial)
+    val podcastUiState = _podcastUiState.asStateFlow()
+
+    private val _latestPodcastsUiState = MutableStateFlow<HomePageUiState>(HomePageUiState.LatestPodcastLoading)
+    val latestPodcastsUiState = _latestPodcastsUiState.asStateFlow()
+
+    private val _latestEpisodesUiState = MutableStateFlow<HomePageUiState>(HomePageUiState.LatestEpisodesLoading)
+    val latestEpisodesUiState = _latestEpisodesUiState.asStateFlow()
 
     fun loadingPodcast(url: String) {
-        _uiState.value = HomePageUiState.PodcastLoading
+        _podcastUiState.value = HomePageUiState.PodcastLoading
         viewModelScope.launch {
             loadingPodcastUseCase.invoke(url).collect { result ->
                 when (result) {
                     is HomePageUiState.PodcastLoaded -> {
-                        _uiState.value = HomePageUiState.PodcastLoaded(result.podcast)
+                        _podcastUiState.value = HomePageUiState.PodcastLoaded(result.podcast)
                     }
 
                     is HomePageUiState.PodcastError -> {
-                        _uiState.value = HomePageUiState.PodcastError
+                        _podcastUiState.value = HomePageUiState.PodcastError
                     }
 
                     else -> Unit
@@ -38,16 +44,15 @@ class HomePageViewModel(
     }
 
     fun latestPodcasts() {
-        _uiState.value = HomePageUiState.LatestPodcastLoading
         viewModelScope.launch {
             latestPodcastsUseCase.invoke().collect { result ->
                 when (result) {
                     is HomePageUiState.LatestPodcastLoaded -> {
-                        _uiState.value = HomePageUiState.LatestPodcastLoaded(result.podcastList)
+                        _latestPodcastsUiState.value = HomePageUiState.LatestPodcastLoaded(result.podcastList)
                     }
 
                     is HomePageUiState.LatestPodcastError -> {
-                        _uiState.value = HomePageUiState.LatestPodcastError
+                        _latestPodcastsUiState.value = HomePageUiState.LatestPodcastError
                     }
 
                     else -> Unit
@@ -57,16 +62,15 @@ class HomePageViewModel(
     }
 
     fun latestEpisodes() {
-        _uiState.value = HomePageUiState.LatestEpisodesLoading
         viewModelScope.launch {
             latestEpisodesUseCase.invoke().collect { result ->
                 when (result) {
                     is HomePageUiState.LatestEpisodesLoaded -> {
-                        _uiState.value = HomePageUiState.LatestEpisodesLoaded(result.episodeList)
+                        _latestEpisodesUiState.value = HomePageUiState.LatestEpisodesLoaded(result.episodeList)
                     }
 
                     is HomePageUiState.LatestEpisodesError -> {
-                        _uiState.value = HomePageUiState.LatestEpisodesError
+                        _latestEpisodesUiState.value = HomePageUiState.LatestEpisodesError
                     }
 
                     else -> Unit
