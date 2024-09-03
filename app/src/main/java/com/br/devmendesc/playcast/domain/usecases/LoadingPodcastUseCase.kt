@@ -1,25 +1,28 @@
 package com.br.devmendesc.playcast.domain.usecases
 
-import com.br.devmendesc.playcast.domain.vo.PodcastVO
+import android.util.Log
+import com.br.devmendesc.playcast.data.repository.PodcastRepository
+import com.br.devmendesc.playcast.domain.mapper.PodcastMapper
 import com.br.devmendesc.playcast.ui.view.home.HomePageUiState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-open class LoadingPodcastUseCase() {
+open class LoadingPodcastUseCase(
+    private val podcastRepository: PodcastRepository,
+    private val podcastMapper: PodcastMapper
+
+) {
     operator fun invoke(url: String): Flow<HomePageUiState> = flow {
         runCatching {
-            PodcastVO(
-                title = "Tech Talks Daily",
-                image = "https://t3.ftcdn.net/jpg/05/17/08/90/360_F_517089048_ZXTKBelIKt7AoeJIJ9ftoOpnKEz2KHPc.jpg",
-                episodes = listOf(),
-                description = "",
-                authors = ""
-            )
+           podcastRepository.fetchPodcast(url)
         }
-            .onSuccess { response ->
-                emit(HomePageUiState.PodcastLoaded(response))
+            .onSuccess { podcastFeed ->
+                Log.d("Response", "Response: ${podcastFeed.channel?.items?.get(1)}")
+                val podcastVO = podcastMapper.mapToPodcastVO(podcastFeed)
+                emit(HomePageUiState.PodcastLoaded(podcastVO))
             }
-            .onFailure {
+            .onFailure {throwable ->
+                Log.e("LoadingPodcastUseCase", "Failed to load podcast", throwable)
                 emit(HomePageUiState.PodcastError)
             }
     }

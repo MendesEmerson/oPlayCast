@@ -25,9 +25,10 @@ class HomePageViewModel(
     val latestEpisodesUiState = _latestEpisodesUiState.asStateFlow()
 
     fun loadingPodcast(url: String) {
+        val urlFormatter = urlFormatter(url)
         _podcastUiState.value = HomePageUiState.PodcastLoading
         viewModelScope.launch {
-            loadingPodcastUseCase.invoke(url).collect { result ->
+            loadingPodcastUseCase.invoke(urlFormatter).collect { result ->
                 when (result) {
                     is HomePageUiState.PodcastLoaded -> {
                         _podcastUiState.value = HomePageUiState.PodcastLoaded(result.podcast)
@@ -76,6 +77,15 @@ class HomePageViewModel(
                     else -> Unit
                 }
             }
+        }
+    }
+
+
+    private fun urlFormatter(url: String): String {
+        return when {
+            url.startsWith("https://") -> url
+            url.startsWith("http://") -> "https://${url.removePrefix("http://")}"
+            else -> "https://$url"
         }
     }
 
