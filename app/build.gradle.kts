@@ -99,6 +99,8 @@ dependencies {
     implementation(libs.androidx.material.icons.core)
     implementation(libs.androidx.material.icons.extended)
 
+    //Exoplayer
+    implementation (libs.exoplayer)
 
 
 }
