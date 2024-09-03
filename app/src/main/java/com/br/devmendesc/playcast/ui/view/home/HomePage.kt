@@ -1,5 +1,6 @@
 package com.br.devmendesc.playcast.ui.view.home
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -10,6 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.br.devmendesc.playcast.R
@@ -21,7 +25,9 @@ import com.br.devmendesc.playcast.ui.components.StarsImageCarousel
 import com.br.devmendesc.playcast.ui.components.StarsLoading
 import com.br.devmendesc.playcast.ui.components.StarsSearchBar
 import com.br.devmendesc.playcast.ui.components.StarsText
+import com.br.devmendesc.playcast.ui.components.StarsToast
 import com.br.devmendesc.playcast.ui.components.StarsVerticalSpacer
+import com.br.devmendesc.playcast.ui.components.ToastType
 import org.koin.androidx.compose.koinViewModel
 
 
@@ -34,6 +40,9 @@ fun HomePage(
     val podcastUiState = homePageViewModel.podcastUiState.collectAsState()
     val latestPodcastsUiState = homePageViewModel.latestPodcastsUiState.collectAsState()
     val latestEpisodesUiState = homePageViewModel.latestEpisodesUiState.collectAsState()
+
+    val focusManager = LocalFocusManager.current
+
 
     LaunchedEffect(Unit) {
         homePageViewModel.latestPodcasts()
@@ -52,6 +61,7 @@ fun HomePage(
 
         StarsSearchBar(
             onSearch = { url ->
+                focusManager.clearFocus()
                 homePageViewModel.loadingPodcast(url)
             },
             modifier = Modifier.padding(horizontal = 16.dp)
@@ -59,7 +69,8 @@ fun HomePage(
 
         LazyColumn(
             modifier = Modifier
-                .fillMaxSize().padding(16.dp)
+                .fillMaxSize()
+                .padding(16.dp)
         ) {
             item {
                 StarsImageCarousel(
@@ -141,6 +152,11 @@ fun HomePage(
             Column(modifier = Modifier.fillMaxSize()) {
                 StarsLoading()
             }
+        }
+        
+        is HomePageUiState.PodcastError -> {
+            StarsToast(message = stringResource(R.string.erro_message_podcast), type = ToastType.ERROR)
+            homePageViewModel.resetPodcastState()
         }
 
         else -> Unit
