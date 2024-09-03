@@ -3,6 +3,7 @@ accompanistPager = "0.29.0-alpha"
 agp = "8.5.0"
 coilCompose = "2.3.0"
 converterSimplexml = "2.9.0"
+dynamicToasts = "4.3.0"
 exoplayer = "2.19.1"
 jacksonCore = "2.15.1"
 jacksonDataformatXml = "2.15.1"
@@ -37,6 +38,7 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 converter-jackson = { module = "com.squareup.retrofit2:converter-jackson", version.ref = "converterSimplexml" }
 converter-simplexml = { module = "com.squareup.retrofit2:converter-simplexml", version.ref = "converterSimplexml" }
+dynamic-toasts = { module = "com.pranavpandey.android:dynamic-toasts", version.ref = "dynamicToasts" }
 exoplayer = { module = "com.google.android.exoplayer:exoplayer", version.ref = "exoplayer" }
 jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", version.ref = "jacksonCore" }
 jackson-dataformat-xml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-xml", version.ref = "jacksonDataformatXml" }
