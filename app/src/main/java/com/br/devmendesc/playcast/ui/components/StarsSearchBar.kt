@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.PlayCircle
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -22,7 +22,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import com.br.devmendesc.playcast.ui.theme.GrayLow
 import com.br.devmendesc.playcast.ui.theme.GrayLowTransparent
 import com.br.devmendesc.playcast.ui.theme.IceWhite
 
@@ -41,7 +40,7 @@ fun StarsSearchBar(
                 .weight(1f)
                 .padding(8.dp)
                 .background(color = GrayLowTransparent, shape = RoundedCornerShape(24.dp)),
-            colors = OutlinedTextFieldDefaults.colors(focusedTextColor = IceWhite),
+            colors = OutlinedTextFieldDefaults.colors(focusedTextColor = IceWhite, focusedBorderColor = IceWhite),
             value = textState, onValueChange = { textState = it },
             singleLine = true,
             placeholder = { StarsText(text = placeholder, fontSize = 12, color = IceWhite) },
@@ -50,7 +49,7 @@ fun StarsSearchBar(
                 Icon(
                     imageVector = Icons.Filled.Search,
                     contentDescription = "Icone pesquisa",
-                    tint = GrayLow
+                    tint = IceWhite
                 )
             },
             trailingIcon = {
@@ -61,7 +60,7 @@ fun StarsSearchBar(
                 ) {
                     Icon(
                         modifier = Modifier.size(32.dp),
-                        imageVector = Icons.Default.PlayArrow,
+                        imageVector = Icons.Default.PlayCircle,
                         contentDescription = "Buscar",
                     )
                 }

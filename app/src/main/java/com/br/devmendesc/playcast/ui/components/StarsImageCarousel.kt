@@ -3,7 +3,6 @@ package com.br.devmendesc.playcast.ui.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -45,7 +44,7 @@ fun StarsImageCarousel(
             count = images.size,
             state = pagerState,
             modifier = modifier
-                .clip(RoundedCornerShape(24.dp)).height(220.dp)
+                .clip(RoundedCornerShape(24.dp)).height(240.dp)
         ) { page ->
             Image(
                 painter = painterResource(id = images[page]),

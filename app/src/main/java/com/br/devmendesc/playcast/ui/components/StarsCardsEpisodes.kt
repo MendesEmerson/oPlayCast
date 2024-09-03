@@ -10,7 +10,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.AccessTime
+import androidx.compose.material.icons.filled.PlayCircleFilled
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -59,20 +60,42 @@ fun StarsCardsEpisodes(
                     contentScale = ContentScale.Crop
                 )
                 Column(
-                    Modifier.height(50.dp),
+                    Modifier.height(50.dp).fillMaxWidth(0.8f),
                     verticalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    StarsText(text = episode.title, fontSize = 12, fontWeight = FontWeight.Bold)
                     StarsText(
-                        text = "${episode.category} - ${episode.duration}",
-                        fontSize = 10,
-                        fontWeight = FontWeight.Light
+                        text = episode.title,
+                        fontSize = 14,
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 1
                     )
+                    Card(
+                        colors = CardDefaults.cardColors(containerColor = GrayLowTransparent)
+                    ) {
+                        Row(
+                            Modifier.padding(4.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.AccessTime,
+                                contentDescription = "Duração",
+                                tint = IceWhite,
+                                modifier = Modifier.size(12.dp)
+                            )
+                            StarsText(text = episode.duration, fontSize = 12)
+                        }
+                    }
                 }
             }
 
             IconButton(onClick = { /*TODO*/ }) {
-                Icon(imageVector = Icons.Filled.PlayArrow, contentDescription = "play", tint = IceWhite)
+                Icon(
+                    modifier = Modifier.size(60.dp),
+                    imageVector = Icons.Filled.PlayCircleFilled,
+                    contentDescription = "play",
+                    tint = IceWhite
+                )
             }
         }
     }
