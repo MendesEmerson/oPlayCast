@@ -60,7 +60,6 @@ fun AudioPlayer(
         audioPlayer.play()
         isPlaying = true
 
-        // Adiciona o listener para detectar o final do episódio
         audioPlayer.player?.addListener(object : Player.Listener {
             override fun onPlaybackStateChanged(state: Int) {
                 if (state == Player.STATE_ENDED) {

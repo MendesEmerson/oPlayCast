@@ -30,7 +30,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.br.devmendesc.playcast.domain.ext.formatDuration
-import com.br.devmendesc.playcast.domain.vo.EpisodeVO
+import com.br.devmendesc.playcast.domain.models.vo.EpisodeVO
 import com.br.devmendesc.playcast.ui.components.StarsText
 import com.br.devmendesc.playcast.ui.theme.GrayHigh
 import com.br.devmendesc.playcast.ui.theme.GrayLowTransparent
@@ -44,7 +44,9 @@ fun EpisodePlayerView(
     val urls = listEpisodeVO.map { it.urlEpisode }
 
     Column(
-        modifier = Modifier.padding(16.dp).fillMaxSize(),
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         Card(
@@ -94,7 +96,7 @@ fun EpisodePlayerView(
                         }
                     }
 
-                    if (episodeVO.duration.formatDuration().isNotEmpty()) {
+                    if (episodeVO.duration > 0) {
                         Card(colors = CardDefaults.cardColors(containerColor = GrayHigh)) {
                             Row(
                                 Modifier
