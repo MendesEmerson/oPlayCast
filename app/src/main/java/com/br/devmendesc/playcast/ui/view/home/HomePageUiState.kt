@@ -1,7 +1,7 @@
 package com.br.devmendesc.playcast.ui.view.home
 
-import com.br.devmendesc.playcast.domain.vo.EpisodeVO
-import com.br.devmendesc.playcast.domain.vo.PodcastVO
+import com.br.devmendesc.playcast.domain.models.vo.EpisodeVO
+import com.br.devmendesc.playcast.domain.models.vo.PodcastVO
 
 sealed class HomePageUiState {
 

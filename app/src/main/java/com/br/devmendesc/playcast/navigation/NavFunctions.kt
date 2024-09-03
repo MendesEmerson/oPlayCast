@@ -1,7 +1,7 @@
 package com.br.devmendesc.playcast.navigation
 
-import com.br.devmendesc.playcast.domain.vo.EpisodeVO
-import com.br.devmendesc.playcast.domain.vo.PodcastVO
+import com.br.devmendesc.playcast.domain.models.vo.EpisodeVO
+import com.br.devmendesc.playcast.domain.models.vo.PodcastVO
 import java.net.URLEncoder
 import java.net.URLDecoder
 import java.nio.charset.StandardCharsets

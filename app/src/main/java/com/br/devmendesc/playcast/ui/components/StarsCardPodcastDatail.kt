@@ -20,7 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.br.devmendesc.playcast.domain.vo.PodcastVO
+import com.br.devmendesc.playcast.domain.models.vo.PodcastVO
 import com.br.devmendesc.playcast.ui.theme.GrayHigh
 import com.br.devmendesc.playcast.ui.theme.GrayLowTransparent
 import com.br.devmendesc.playcast.ui.theme.PurpleGrey80
