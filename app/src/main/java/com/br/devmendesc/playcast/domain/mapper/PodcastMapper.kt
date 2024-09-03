@@ -28,21 +28,12 @@ class PodcastMapper {
         val imageChanel = image?.href ?: ""
         return EpisodeVO(
             title = item.title,
-            duration = formatDuration(item.itunesDuration ?: 0),
+            duration = item.itunesDuration ?: 0,
             image = item.image?.href ?: imageChanel,
-            category = item.itunesTitle ?: "Unknown",
-            explicit = item.explicit ?: ""
+            category = item.itunesAuthor ?: "",
+            explicit = item.explicit ?: "",
+            urlEpisode = item.enclosure?.url ?: ""
         )
-    }
-
-    private fun formatDuration(seconds: Int): String {
-        val hours = seconds / 3600
-        val minutes = (seconds % 3600) / 60
-
-        val hoursFormatted = hours.toString().padStart(2, '0')
-        val minutesFormatted = minutes.toString().padStart(2, '0')
-
-        return "${hoursFormatted}h${minutesFormatted}"
     }
 
     private fun getLanguageNameInOriginalLanguage(abbreviation: String?): String? {
