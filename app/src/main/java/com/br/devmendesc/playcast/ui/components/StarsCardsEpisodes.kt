@@ -25,7 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.br.devmendesc.playcast.domain.ext.formatDuration
-import com.br.devmendesc.playcast.domain.vo.EpisodeVO
+import com.br.devmendesc.playcast.domain.models.vo.EpisodeVO
 import com.br.devmendesc.playcast.ui.theme.GrayLowTransparent
 import com.br.devmendesc.playcast.ui.theme.IceWhite
 
@@ -61,7 +61,9 @@ fun StarsCardsEpisodes(
                     contentScale = ContentScale.Crop
                 )
                 Column(
-                    Modifier.height(50.dp).fillMaxWidth(0.8f),
+                    Modifier
+                        .height(50.dp)
+                        .fillMaxWidth(0.8f),
                     verticalArrangement = Arrangement.SpaceEvenly
                 ) {
                     StarsText(
@@ -70,27 +72,29 @@ fun StarsCardsEpisodes(
                         fontWeight = FontWeight.Bold,
                         maxLines = 1
                     )
-                    Card(
-                        colors = CardDefaults.cardColors(containerColor = GrayLowTransparent)
-                    ) {
-                        Row(
-                            Modifier.padding(4.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    if (episode.duration > 0) {
+                        Card(
+                            colors = CardDefaults.cardColors(containerColor = GrayLowTransparent)
                         ) {
-                            Icon(
-                                imageVector = Icons.Filled.AccessTime,
-                                contentDescription = "Duração",
-                                tint = IceWhite,
-                                modifier = Modifier.size(12.dp)
-                            )
-                            StarsText(text = episode.duration.formatDuration(), fontSize = 12)
+                            Row(
+                                Modifier.padding(4.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Filled.AccessTime,
+                                    contentDescription = "Duração",
+                                    tint = IceWhite,
+                                    modifier = Modifier.size(12.dp)
+                                )
+                                StarsText(text = episode.duration.formatDuration(), fontSize = 12)
+                            }
                         }
                     }
                 }
             }
 
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = { onEpisodeClick.invoke() }) {
                 Icon(
                     modifier = Modifier.size(60.dp),
                     imageVector = Icons.Filled.PlayCircleFilled,
