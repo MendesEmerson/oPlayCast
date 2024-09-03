@@ -1,4 +1,4 @@
-package com.br.devmendesc.playcast.domain.vo
+package com.br.devmendesc.playcast.domain.models.vo
 
 import kotlinx.serialization.Serializable
 
@@ -10,5 +10,6 @@ data class PodcastVO(
     val description: String,
     val authors: String,
     val genres: String,
-    val language: String
+    val language: String,
+    var link: String
 )

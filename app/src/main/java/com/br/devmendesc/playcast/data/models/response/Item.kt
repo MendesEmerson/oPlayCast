@@ -44,12 +44,5 @@ data class Item(
 
 @JacksonXmlRootElement(localName = "enclosure")
 data class Enclosure(
-    @JacksonXmlProperty(localName = "url")
     val url: String = "",
-
-    @JacksonXmlProperty(localName = "length")
-    val length: String = "",
-
-    @JacksonXmlProperty(localName = "type")
-    val type: String = ""
 )

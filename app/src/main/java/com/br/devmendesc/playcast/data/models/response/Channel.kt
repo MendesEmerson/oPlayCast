@@ -25,8 +25,8 @@ data class Channel(
     @JacksonXmlProperty(localName = "author")
     val authors: String? = null,
 
-    @JacksonXmlProperty(localName = "summary")
-    val itunesSummary: String? = null,
+    @JacksonXmlProperty(localName = "link")
+    val link: Link? = null,
 
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "item")
@@ -37,4 +37,10 @@ data class Channel(
 data class Category(
     @JacksonXmlProperty(localName = "text")
     val text: String? = null,
+)
+
+
+@JacksonXmlRootElement(localName = "link")
+data class Link(
+    val href: String? = null
 )

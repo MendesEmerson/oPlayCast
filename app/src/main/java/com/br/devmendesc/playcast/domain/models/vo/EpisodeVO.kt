@@ -1,4 +1,4 @@
-package com.br.devmendesc.playcast.domain.vo
+package com.br.devmendesc.playcast.domain.models.vo
 
 import kotlinx.serialization.Serializable
 
