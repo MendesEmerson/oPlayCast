@@ -1,5 +1,6 @@
 package com.br.devmendesc.playcast.ui.view.home
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -47,7 +48,8 @@ fun HomePage(
         item {
             StarsText(
                 text = stringResource(R.string.busque_pelo_seu_podcast_favorito),
-                fontSize = 24
+                fontSize = 24,
+                lineHeight = 32
             )
             StarsVerticalSpacer(dp = 20)
             StarsSearchBar(
@@ -71,7 +73,8 @@ fun HomePage(
 
         when (latestPodcastsUiState.value) {
             is HomePageUiState.LatestPodcastLoaded -> {
-                val podcasts = (latestPodcastsUiState.value as HomePageUiState.LatestPodcastLoaded).podcastList
+                val podcasts =
+                    (latestPodcastsUiState.value as HomePageUiState.LatestPodcastLoaded).podcastList
                 item {
                     LazyRow {
                         items(podcasts.take(10)) { podcast ->
@@ -100,7 +103,8 @@ fun HomePage(
 
         when (latestEpisodesUiState.value) {
             is HomePageUiState.LatestEpisodesLoaded -> {
-                val episodes = (latestEpisodesUiState.value as HomePageUiState.LatestEpisodesLoaded).episodeList
+                val episodes =
+                    (latestEpisodesUiState.value as HomePageUiState.LatestEpisodesLoaded).episodeList
                 items(episodes.take(5)) { episode ->
                     StarsCardsEpisodes(episode = episode, onEpisodeClick = { })
                 }
@@ -116,5 +120,19 @@ fun HomePage(
         }
     }
 
+    when (podcastUiState.value) {
+        is HomePageUiState.PodcastLoaded -> {
+            val podcast = (podcastUiState.value as HomePageUiState.PodcastLoaded).podcast
+            onNavPodcastDetail.invoke(podcast)
+        }
+
+        is HomePageUiState.PodcastLoading -> {
+            Column(modifier = Modifier.fillMaxSize()) {
+                StarsLoading()
+            }
+        }
+
+        else -> Unit
+    }
 
 }
