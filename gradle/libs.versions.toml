@@ -21,6 +21,7 @@ materialIconsCore = "1.6.8"
 navigationCompose = "2.7.7"
 retrofit = "2.9.0"
 retrofit2KotlinxSerializationConverter = "1.0.0"
+staxApi = "1.0-2"
 
 [libraries]
 accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanistPager" }
@@ -53,6 +54,7 @@ kotlin-serialization = { module = "org.jetbrains.kotlin:kotlin-serialization", v
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2KotlinxSerializationConverter" }
+stax-api = { module = "javax.xml.stream:stax-api", version.ref = "staxApi" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

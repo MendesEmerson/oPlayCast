@@ -87,6 +87,8 @@ dependencies {
     //Jackson
     implementation(libs.jackson.dataformat.xml)
     implementation(libs.jackson.core)
+    implementation(libs.stax.api)
+
 
     //Pager
     implementation (libs.accompanist.pager)

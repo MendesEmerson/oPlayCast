@@ -9,7 +9,7 @@ data class Item(
     val title: String = "",
 
     @JacksonXmlProperty(localName = "description")
-    val description: String = "",
+    val description: String? = null,
 
     @JacksonXmlProperty(localName = "pubDate")
     val pubDate: String = "",
@@ -17,10 +17,7 @@ data class Item(
     @JacksonXmlProperty(localName = "image")
     val image: Image? = null,
 
-    @JacksonXmlProperty(localName = "itunes:title")
-    val itunesTitle: String? = null,
-
-    @JacksonXmlProperty(localName = "itunes:episodeType")
+    @JacksonXmlProperty(localName = "episodeType")
     val itunesEpisodeType: String? = null,
 
     @JacksonXmlProperty(localName = "author")
