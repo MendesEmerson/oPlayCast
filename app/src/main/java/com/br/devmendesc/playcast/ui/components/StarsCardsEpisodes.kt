@@ -24,6 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import com.br.devmendesc.playcast.domain.ext.formatDuration
 import com.br.devmendesc.playcast.domain.vo.EpisodeVO
 import com.br.devmendesc.playcast.ui.theme.GrayLowTransparent
 import com.br.devmendesc.playcast.ui.theme.IceWhite
@@ -83,7 +84,7 @@ fun StarsCardsEpisodes(
                                 tint = IceWhite,
                                 modifier = Modifier.size(12.dp)
                             )
-                            StarsText(text = episode.duration, fontSize = 12)
+                            StarsText(text = episode.duration.formatDuration(), fontSize = 12)
                         }
                     }
                 }
