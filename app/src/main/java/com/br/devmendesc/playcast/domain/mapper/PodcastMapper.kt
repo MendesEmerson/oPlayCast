@@ -1,10 +1,12 @@
 package com.br.devmendesc.playcast.domain.mapper
 
+import android.util.Log
 import com.br.devmendesc.playcast.data.models.response.Image
 import com.br.devmendesc.playcast.data.models.response.Item
 import com.br.devmendesc.playcast.data.models.response.PodcastFeed
-import com.br.devmendesc.playcast.domain.vo.EpisodeVO
-import com.br.devmendesc.playcast.domain.vo.PodcastVO
+import com.br.devmendesc.playcast.domain.models.entities.PodcastEntity
+import com.br.devmendesc.playcast.domain.models.vo.EpisodeVO
+import com.br.devmendesc.playcast.domain.models.vo.PodcastVO
 
 class PodcastMapper {
 
@@ -20,19 +22,46 @@ class PodcastMapper {
             description = channel?.description ?: "" ,
             authors = channel?.authors ?: "",
             language = getLanguageNameInOriginalLanguage(channel?.language) ?: "",
-            genres = channel?.category?.text ?: ""
+            genres = channel?.category?.text ?: "",
+            link = channel?.link?.href ?: ""
         )
     }
 
     private fun mapToEpisodeVO(item: Item, image: Image?): EpisodeVO {
         val imageChanel = image?.href ?: ""
+        Log.i("ITEM", "${item.enclosure?.url} ${item.itunesDuration}")
         return EpisodeVO(
             title = item.title,
             duration = item.itunesDuration ?: 0,
             image = item.image?.href ?: imageChanel,
             category = item.itunesAuthor ?: "",
             explicit = item.explicit ?: "",
-            urlEpisode = item.enclosure?.url ?: ""
+            urlEpisode = urlFormatter(item.enclosure?.url ?: "")
+        )
+    }
+
+    fun entityToPodcastVO(podcastEntity: PodcastEntity, episodes: List<EpisodeVO>): PodcastVO {
+        return PodcastVO(
+            title = podcastEntity.title,
+            image = podcastEntity.image,
+            episodes = episodes,
+            description = podcastEntity.description,
+            authors = podcastEntity.authors,
+            genres = podcastEntity.genres,
+            language = podcastEntity.language,
+            link = podcastEntity.link
+        )
+    }
+
+    fun voToPodcastEntity(podcastVO: PodcastVO): PodcastEntity {
+        return PodcastEntity(
+            title = podcastVO.title,
+            image = podcastVO.image,
+            description = podcastVO.description,
+            authors = podcastVO.authors,
+            genres = podcastVO.genres,
+            language = podcastVO.language,
+            link = podcastVO.link
         )
     }
 
@@ -53,5 +82,13 @@ class PodcastMapper {
         )
 
         return languageMap[abbreviation] ?: abbreviation
+    }
+
+    private fun urlFormatter(url: String): String {
+        return when {
+            url.startsWith("https://") -> url
+            url.startsWith("http://") -> "https://${url.removePrefix("http://")}"
+            else -> "https://$url"
+        }
     }
 }
