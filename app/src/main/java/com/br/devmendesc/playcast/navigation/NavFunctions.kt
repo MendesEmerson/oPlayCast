@@ -1,5 +1,6 @@
 package com.br.devmendesc.playcast.navigation
 
+import com.br.devmendesc.playcast.domain.vo.EpisodeVO
 import com.br.devmendesc.playcast.domain.vo.PodcastVO
 import java.net.URLEncoder
 import java.net.URLDecoder
@@ -20,3 +21,19 @@ fun decodePodcast(encodedPodcast: String): PodcastVO? {
         null
     }
 }
+
+fun encodeEpisodes(episodes: List<EpisodeVO>): String {
+    val episodesJson = Json.encodeToString(episodes)
+    return URLEncoder.encode(episodesJson, StandardCharsets.UTF_8.toString())
+}
+
+fun decodeEpisodes(encodedEpisodes: String): List<EpisodeVO>? {
+    return try {
+        val decodedJson = URLDecoder.decode(encodedEpisodes, StandardCharsets.UTF_8.toString())
+        Json.decodeFromString<List<EpisodeVO>>(decodedJson)
+    } catch (e: Exception) {
+        null
+    }
+}
+
+

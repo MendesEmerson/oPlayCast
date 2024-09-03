@@ -12,14 +12,10 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.br.devmendesc.playcast.domain.vo.PodcastVO
 import com.br.devmendesc.playcast.ui.theme.BackgroundApp
 import com.br.devmendesc.playcast.ui.view.home.HomePage
+import com.br.devmendesc.playcast.ui.view.player.EpisodePlayerView
 import com.br.devmendesc.playcast.ui.view.podcastDetail.PodcasDatailPage
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
-import java.net.URLDecoder
-import java.net.URLEncoder
 
 @Composable
 fun SetupNavigation(navController: NavHostController) {
@@ -58,10 +54,33 @@ fun SetupNavigation(navController: NavHostController) {
                     val podcastJson = backStackEntry.arguments?.getString("podcast")
                     val podcast = podcastJson?.let { decodePodcast(it) }
                     if (podcast != null) {
-                        PodcasDatailPage(podcast)
+                        PodcasDatailPage(
+                            podcast = podcast,
+                            onNavPlayerEpisode = { episodes, index ->
+                                val encodedEpisode = encodeEpisodes(episodes)
+                                navController.navigate("${Routes.EPISODE_PLAYER.name}/$encodedEpisode/$index")
+                            }
+                        )
                     }
                 }
 
+                composable(
+                    route = "${Routes.EPISODE_PLAYER.name}/{episodes}/{index}",
+                    arguments = listOf(
+                        navArgument("episodes") { type = NavType.StringType },
+                        navArgument("index") { type = NavType.IntType }
+                    )
+                ) { backStackEntry ->
+                    val episodeJson = backStackEntry.arguments?.getString("episodes")
+                    val index = backStackEntry.arguments?.getInt("index")
+                    val episode = episodeJson?.let { decodeEpisodes(it) }
+                    if (episode != null) {
+                        EpisodePlayerView(
+                            listEpisodeVO = episode,
+                            index = index ?: 0
+                        )
+                    }
+                }
             }
         }
     }
