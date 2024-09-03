@@ -11,7 +11,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
+import com.br.devmendesc.playcast.ui.components.StarsTopBar
 import com.br.devmendesc.playcast.ui.theme.BackgroundApp
 import com.br.devmendesc.playcast.ui.view.home.HomePage
 import com.br.devmendesc.playcast.ui.view.player.EpisodePlayerView
@@ -20,8 +22,16 @@ import com.br.devmendesc.playcast.ui.view.podcastDetail.PodcasDatailPage
 @Composable
 fun SetupNavigation(navController: NavHostController) {
 
+    @Composable
+    fun topBarVerification(): Boolean {
+        val navBackStackEntry = navController.currentBackStackEntryAsState()
+        return navBackStackEntry.value?.destination?.route != Routes.HOME.name
+    }
+
     Scaffold(
-        topBar = {}
+        topBar = {
+            if (topBarVerification()) StarsTopBar(onBack = { navController.popBackStack() })
+        }
     ) { innerPadding ->
         Box(
             modifier = Modifier
@@ -39,6 +49,10 @@ fun SetupNavigation(navController: NavHostController) {
                         onNavPodcastDetail = { podcast ->
                             val encodedPodcast = encodePodcast(podcast)
                             navController.navigate("${Routes.PODCAST_DETAIL.name}/$encodedPodcast")
+                        },
+                        onNavPlayerEpisode = { episodes, index ->
+                            val encodedEpisode = encodeEpisodes(episodes)
+                            navController.navigate("${Routes.EPISODE_PLAYER.name}/$encodedEpisode/$index")
                         }
                     )
                 }
@@ -85,3 +99,6 @@ fun SetupNavigation(navController: NavHostController) {
         }
     }
 }
+
+
+
