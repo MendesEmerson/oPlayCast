@@ -74,7 +74,8 @@ dependencies {
 
     // Retrofit
     implementation(libs.retrofit)
-    implementation(libs.retrofit2.kotlinx.serialization.converter)
+    implementation(libs.converter.jackson)
+
 
     // Navigation
     implementation(libs.androidx.navigation.compose)
@@ -83,8 +84,9 @@ dependencies {
     implementation(libs.kotlin.serialization)
     implementation(libs.kotlinx.serialization.json)
 
-    //XmlUtil Serializable
-    implementation(libs.xml.serialization)
+    //Jackson
+    implementation(libs.jackson.dataformat.xml)
+    implementation(libs.jackson.core)
 
     //Pager
     implementation (libs.accompanist.pager)
@@ -92,5 +94,11 @@ dependencies {
 
     //Coil
     implementation(libs.coil.compose)
+
+    //Material Icons
+    implementation(libs.androidx.material.icons.core)
+    implementation(libs.androidx.material.icons.extended)
+
+
 
 }
