@@ -80,6 +80,10 @@ class HomePageViewModel(
         }
     }
 
+    fun resetPodcastState() {
+        _podcastUiState.value = HomePageUiState.PodcastInitial
+    }
+
 
     private fun urlFormatter(url: String): String {
         return when {
