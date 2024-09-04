@@ -22,6 +22,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -57,8 +58,7 @@ fun AudioPlayer(
 
     LaunchedEffect(currentIndex) {
         audioPlayer.initializePlayer(audiosUrl, currentIndex)
-        audioPlayer.play()
-        isPlaying = true
+        isPlaying = false
 
         audioPlayer.player?.addListener(object : Player.Listener {
             override fun onPlaybackStateChanged(state: Int) {
@@ -82,6 +82,12 @@ fun AudioPlayer(
                 timeRemaining = audioPlayer.getTimeRemaining()
             }
             delay(1000L)
+        }
+    }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            audioPlayer.release()
         }
     }
 
