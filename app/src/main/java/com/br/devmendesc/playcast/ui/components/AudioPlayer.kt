@@ -83,9 +83,7 @@ class AudioPlayer(private val context: Context) {
 
     fun getTimeRemaining(): String {
         val duration = player?.duration ?: 0
-        Log.i("durationE", "Player $duration")
         val currentPosition = player?.currentPosition ?: 0
-        Log.i("durationE", "PlayerPosition $currentPosition")
         val remainingTime = duration - currentPosition
         return formatTime(remainingTime)
     }

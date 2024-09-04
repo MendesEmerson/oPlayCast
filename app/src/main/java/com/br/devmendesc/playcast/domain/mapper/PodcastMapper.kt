@@ -29,7 +29,6 @@ class PodcastMapper {
 
     private fun mapToEpisodeVO(item: Item, image: Image?): EpisodeVO {
         val imageChanel = image?.href ?: ""
-        Log.i("ITEM", "${item.enclosure?.url} ${item.itunesDuration}")
         return EpisodeVO(
             title = item.title,
             duration = item.itunesDuration ?: 0,

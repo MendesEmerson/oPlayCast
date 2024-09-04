@@ -63,7 +63,6 @@ fun AudioPlayer(
         audioPlayer.player?.addListener(object : Player.Listener {
             override fun onPlaybackStateChanged(state: Int) {
                 if (state == Player.STATE_ENDED) {
-                    // Verifica se há próximo episódio e avança
                     if (currentIndex < audiosUrl.size - 1) {
                         currentIndex += 1
                         audioPlayer.next(audiosUrl, currentIndex)
