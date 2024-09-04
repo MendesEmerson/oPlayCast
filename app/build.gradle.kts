@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
+    kotlin("kapt")
+
 }
 
 android {
@@ -17,6 +20,12 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
+        }
+    }
+
+    kapt {
+        arguments {
+            arg("room.schemaLocation", "$projectDir/schemas")
         }
     }
 
@@ -66,4 +75,50 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Koin
+    implementation(libs.koin.androidx.compose)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.jackson)
+
+
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
+
+    // Kotlin Serializable
+    implementation(libs.kotlin.serialization)
+    implementation(libs.kotlinx.serialization.json)
+
+    //Jackson
+    implementation(libs.jackson.dataformat.xml)
+    implementation(libs.jackson.core)
+    implementation(libs.stax.api)
+
+
+    //Pager
+    implementation (libs.accompanist.pager)
+    implementation (libs.accompanist.pager.indicators)
+
+    //Coil
+    implementation(libs.coil.compose)
+
+    //Material Icons
+    implementation(libs.androidx.material.icons.core)
+    implementation(libs.androidx.material.icons.extended)
+
+    //Exoplayer
+    implementation (libs.exoplayer)
+
+    //Room
+    implementation (libs.androidx.room.runtime)
+    implementation (libs.androidx.room.ktx)
+    kapt (libs.androidx.room.compiler)
+
+    //DynamicToast
+    implementation (libs.dynamic.toasts)
+
+
+
 }

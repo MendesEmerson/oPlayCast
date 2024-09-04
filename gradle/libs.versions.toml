@@ -1,16 +1,47 @@
 [versions]
+accompanistPager = "0.29.0-alpha"
 agp = "8.5.0"
+coilCompose = "2.3.0"
+converterSimplexml = "2.9.0"
+dynamicToasts = "4.3.0"
+exoplayer = "2.19.1"
+jacksonCore = "2.15.1"
+jacksonDataformatXml = "2.15.1"
+koinAndroidxCompose = "3.5.6"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+kotlinSerialization = "1.9.10"
+kotlinxSerializationJson = "1.6.2"
 lifecycleRuntimeKtx = "2.8.4"
 activityCompose = "1.9.1"
 composeBom = "2024.04.01"
+materialIconsCore = "1.6.8"
+navigationCompose = "2.7.7"
+retrofit = "2.9.0"
+retrofit2KotlinxSerializationConverter = "1.0.0"
+roomRuntime = "2.6.1"
+staxApi = "1.0-2"
 
 [libraries]
+accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanistPager" }
+accompanist-pager-indicators = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "accompanistPager" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-material-icons-core = { module = "androidx.compose.material:material-icons-core", version.ref = "materialIconsCore" }
+androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsCore" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
+converter-jackson = { module = "com.squareup.retrofit2:converter-jackson", version.ref = "converterSimplexml" }
+converter-simplexml = { module = "com.squareup.retrofit2:converter-simplexml", version.ref = "converterSimplexml" }
+dynamic-toasts = { module = "com.pranavpandey.android:dynamic-toasts", version.ref = "dynamicToasts" }
+exoplayer = { module = "com.google.android.exoplayer:exoplayer", version.ref = "exoplayer" }
+jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", version.ref = "jacksonCore" }
+jackson-dataformat-xml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-xml", version.ref = "jacksonDataformatXml" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -24,6 +55,12 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinAndroidxCompose" }
+kotlin-serialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlinSerialization" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2KotlinxSerializationConverter" }
+stax-api = { module = "javax.xml.stream:stax-api", version.ref = "staxApi" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

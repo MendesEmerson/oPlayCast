@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PlayCast</string>
+    <string name="busque_pelo_seu_podcast_favorito">Busque pelo seu Podcast favorito</string>
+    <string name="podcasts_pesquisados">Ultimos podcast\'s pesquisados</string>
+    <string name="episodios_reproduzidos">Ultimos episódios reproduzidos</string>
+    <string name="erro_message_podcast">Ocorreu um erro ao buscar seu Podcast, verifique sua URL e tente novamente!</string>
 </resources>
